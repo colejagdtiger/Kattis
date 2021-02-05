@@ -15,12 +15,12 @@ struct person{
 };
 
 bool comp(person lhs, person rhs) {
-	if (lhs.a <= rhs.a) {
-			return true;
-		}
-		else {
-			return false;
-		}
+	if (lhs.a < rhs.a) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 int main() {
@@ -35,15 +35,19 @@ int main() {
 	}
 	sort(people.begin(), people.end(), comp);
 	for (auto x : people) {
+		
 		while (times.size() && times.top() < x.a) {
+
 			times.pop();
 		}
-		if (times.size() && (times.top() - m < x.a)) {
+		if (times.size() && times.top() - m <= x.a) {
+
 			times.pop();
 			count--;
 		}
 		times.push(x.a + x.s + m);
+
 		count++;	
 	}
-	cout << count << endl;
+	cout << n - count << endl;
 }
